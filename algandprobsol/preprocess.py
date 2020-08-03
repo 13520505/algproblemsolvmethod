@@ -26,9 +26,18 @@ def get_store_feature(ds,store_id,dept_id):
     
     return ds
 
+def rearrage(ds):
+    PREDICTED_COL_NAME = ["weeklySales"]
+    features_col_name = ds.columns.drop(PREDICTED_COL_NAME).tolist()
+    re_arrange = features_col_name + PREDICTED_COL_NAME
+    ds = ds[re_arrange]
+    return ds
+
 # preprocess_data(FEATURE_PATH)
 BASE_PATH = "./resources/"
 ds = load_data(BASE_PATH)
 ds = preprocess_data(ds)
 store1_dept1 = get_store_feature(ds,1,1)
 print(store1_dept1)
+re =rearrage(store1_dept1)
+print(re)
